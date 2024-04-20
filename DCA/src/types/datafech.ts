@@ -1,15 +1,17 @@
 
 
-export const getdata = async (Text:any) => {
+export const getdata = async () => {
     try{
-    const data = await fetch(`https://cataas.com/cat/says/:${Text}`). then((res) => res.json());
-    console.log(data);
-    return data;   
+    const data = await fetch(`https://catfact.ninja/fact`). then((res) => res.json());
+    console.log(data.fact);
+    return data.fact;   
 }
 catch(error){
     console.log(error)
     return error;
 }
 }
+getdata();
+
 
 

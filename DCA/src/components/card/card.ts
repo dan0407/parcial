@@ -1,10 +1,13 @@
 export enum Attribute {
-    'text' = 'text'
+    'text' = 'text',
+    'image' = 'image',
+    
 }
 
 
-class card extends HTMLElement {
+class Card extends HTMLElement {
     text?: string;
+    image?: string;
     
     constructor(){ 
         super();
@@ -17,7 +20,8 @@ class card extends HTMLElement {
 
   static get observedAttributes() {
     const attrs: Record<Attribute, null> = {
-      text: null
+      text: null,
+      image: null
     };
 
     return Object.keys(attrs);
@@ -31,9 +35,30 @@ class card extends HTMLElement {
 
 
     render() {
-        const something = this.ownerDocument.createElement('div');
-        this.shadowRoot?.appendChild(something);
-    }
-}
+      if (this.shadowRoot){
+        this.shadowRoot.innerHTML=''
+      }
 
-customElements.define('card-card', card)
+        const catDive = this.ownerDocument.createElement('div');
+        
+       
+        
+        // buttoncats.addEventListener('click', );
+        
+        const texth1 = this.ownerDocument.createElement('h1')
+        texth1.className= 'text'
+        texth1.textContent= `${this.text}`
+
+        const imagen = this.ownerDocument.createElement('img')
+        texth1.className= 'imagen'
+        texth1.textContent= `${this.image}`
+
+    
+        
+        this.shadowRoot?.appendChild(catDive);
+        this.shadowRoot?.appendChild(imagen);
+        this.shadowRoot?.appendChild(texth1);
+      }
+}
+export default Card
+customElements.define('card-card', Card)
